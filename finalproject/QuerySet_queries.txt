@@ -1,0 +1,40 @@
+1) Открываем терминал.
+   Проверяем в какой директории находимся - pwd
+   Переходим в директорию проекта - cd finalproject
+
+2) Открываем Django shell, консоль позволяющую делать QuerySet запросы - python manage.py shell
+
+3) Импортируем наши модели Buyer и Game - from task1.models import Buyer, Game
+
+4) Проверяем сколько у нас содержится объектов в наших моделях Buyer, Game
+   для этого отправляем запросы - Buyer.objects.all(), Game.objects.all()
+
+5) Создаем 3 записи для модели Buyer (один Buyer должен быть младше 18):
+   buyer1 = Buyer.objects.create(name='Vika', balance=100.00, age=17)  # Младше 18
+   buyer2 = Buyer.objects.create(name='Maksim', balance=150.00, age=25)    # Старше 18
+   buyer3 = Buyer.objects.create(name='Alex', balance=200.00, age=30) # Старше 18
+
+6) Проверяем сколько у нас содержится объектов в наших моделях Buyer
+   Buyer.objects.all()
+
+7) Создайте записи для модели Game (одна Game должна быть без ограничения возраста):
+   game1 = Game.objects.create(title='Game A', cost=50.00, size=1.5, description='Описание игры A', age_limited=False)
+   # Без ограничения по возрасту
+   game2 = Game.objects.create(title='Game B', cost=60.00, size=2.0, description='Описание игры B', age_limited=True)
+   game3 = Game.objects.create(title='Game C', cost=70.00, size=2.5, description='Описание игры C', age_limited=True)
+
+6) Проверяем сколько у нас содержится объектов в наших моделях Buyer
+   Game.objects.all()
+
+7) Связываем записи buyer с Game:
+   - Только один из Buyer должен обладать всеми Game
+   - Buyer с возрастом меньше 18 не выдавать игры с ограничением по возрасту
+
+   buyer2 (старше 18) получит все игры
+   buyer1 (младше 18) получит только game1
+   game1.buyers.set([buyer1,buyer2])  # Game A (без возрастного ограничения)
+   game2.buyers.set([buyer2,buyer3])  # Game B (возрастное ограничение)
+   game3.buyers.set([buyer2,buyer3])  # Game C (возрастное ограничение)
+
+8) Выходим из Django shell:
+   exit()
