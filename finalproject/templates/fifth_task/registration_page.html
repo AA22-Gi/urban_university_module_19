@@ -13,28 +13,11 @@
     <form method="post">
         {% csrf_token %}
         {{ form }}
-<!--        <label>Введите логин</label>-->
-<!--        <input type="text" name="username" maxlength="30" required>-->
-<!--        <br>-->
-
-<!--        <label>Введите пароль</label>-->
-<!--        <input type="text" name="password" minlength="8" required>-->
-<!--        <br>-->
-
-<!--        <label>Повторите пароль</label>-->
-<!--        <input type="text" name="repeat_password" minlength="8" required>-->
-<!--        <br>-->
-
-<!--        <label>Введите свой возраст</label>-->
-<!--        <input type="number" name="age" min="0" max="100" required>-->
-<!--        <br>-->
-
         <button type="submit">Зарегистрироваться</button>
     </form>
 
     {% if message %}
         <p style="color: green;">{{ message }}</p>
     {% endif %}
-
 </body>
 </html>
