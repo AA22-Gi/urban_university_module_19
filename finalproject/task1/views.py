@@ -9,7 +9,7 @@ def platform(request):
 
 
 def shop(request):
-    games = ['Atomic Heart', 'Cyberpunk 2077', 'PayDay 2']
+    games = Game.objects.all()
 
     context = {
         'games': games
