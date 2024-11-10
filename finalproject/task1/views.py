@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserRegister
-from .models import Buyer
+from .models import Buyer, Game
 
 
 # Create your views here.
