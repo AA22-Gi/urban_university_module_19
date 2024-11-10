@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import UserRegister
+from .models import Buyer
 
 
 # Create your views here.
@@ -20,7 +21,8 @@ def cart(request):
     return render(request, 'fourth_task/cart.html')
 
 
-users = ['user1', 'user2', 'user3']
+users = Buyer.objects.all()
+usernames_list = list(Buyer.objects.values_list('name', flat=True))
 
 
 def sign_up_by_django(request):
@@ -33,14 +35,14 @@ def sign_up_by_django(request):
             repeat_password = form.cleaned_data['repeat_password']
             age = form.cleaned_data['age']
 
-            if username in users:
+            if username in usernames_list:
                 info['error'] = 'Пользователь уже существует'
             elif age < 18:
                 info['error'] = 'Вы должны быть старше 18'
             elif password != repeat_password:
                 info['error'] = 'Пароли не совпадают'
             else:
-                users.append(username)
+                Buyer.objects.create(name=username, balance=0, age=age)
                 info['message'] = f'Приветствуем, {username}!'
         else:
             form = UserRegister()
