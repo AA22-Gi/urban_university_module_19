@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Главная страница</title>
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        {% block pagename %}
+        <h1>Главная страница</h1>
+        {% endblock %}
+    </header>
+
+    <nav>
+        {% block menu %}
+        <div><a href="/platform/">Главная</a></div><br>
+        <div><a href="/platform/games/">Магазин</a></div><br>
+        <div><a href="/platform/cart/">Корзина</a></div>
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block content %}
+            <p></p>
+        {% endblock %}
+    </main>
+</body>
+</html>
