@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task1.views import platform, shop, cart, sign_up_by_django
-from pangination.views import post_list
+from pangination.views import post_list, post_list_2
 
 
 urlpatterns = [
@@ -27,4 +27,5 @@ urlpatterns = [
     path('platform/cart/', cart),
     path('registration/', sign_up_by_django),
     path('', post_list),
+    path('2', post_list_2),
 ]
