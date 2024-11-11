@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Posts</title>
+</head>
+<body>
+    <h1>Страница с постами</h1>
+
+    <form method="GET">
+    <label for="items_per_page">Posts per page:</label>
+    <select name="items_per_page" id="items_per_page" onchange="this.form.submit()">
+        <option value="3" {% if items_per_page == '3' %}selected{% endif %}>3</option>
+        <option value="5" {% if items_per_page == '5' %}selected{% endif %}>5</option>
+        <option value="7" {% if items_per_page == '7' %}selected{% endif %}>7</option>
+    </select>
+    </form>
+
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <p><em>Published on {{ post.created_at }}</em></p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        <span>Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+        <ul>
+            {% for i in posts.paginator.page_range %}
+                <li>
+                    {% if posts.number == i %}
+                        <strong>{{ i }}</strong>
+                    {% else %}
+                        <a href="?page={{ i }}&items_per_page={{ items_per_page }}">{{ i }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}&items_per_page={{ items_per_page }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
