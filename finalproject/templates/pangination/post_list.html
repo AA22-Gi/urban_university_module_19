@@ -1,29 +1,11 @@
-<!-- blog/templates/blog/post_list.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Blog Posts</title>
-    <style>
-        /* Простейшие стили для списка постов и пагинации */
-        .pagination {
-            display: flex;
-            list-style: none;
-            padding: 0;
-        }
-        .pagination li {
-            margin: 0 5px;
-        }
-        .pagination a {
-            text-decoration: none;
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
-    <h1>Blog Posts</h1>
+    <h1>Страница с постами</h1>
     <ul>
         {% for post in posts %}
             <li>
