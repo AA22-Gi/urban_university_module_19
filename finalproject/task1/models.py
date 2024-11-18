@@ -9,11 +9,17 @@ class Buyer(models.Model):
 
     def __str__(self):
         return self.name
+
     #  max_digits=10 общее количество цифр, которые могут быть сохранены в поле,
     #  включая как целую часть, так и дробную.
     #  decimal_places=2 - количество цифр, которое может быть сохранено после десятичной точки
     #  models.PositiveIntegerField() — это тип поля, который используется для хранения целых чисел,
     #  которые должны быть положительными.
+    class Meta:
+        verbose_name = 'Покупатель'  # Название в единственном числе
+        verbose_name_plural = 'Покупатели'  # Название во множественном числе
+        ordering = ['name']  # Сортировка по имени покупателя
+        unique_together = ('name',)  # Уникальность имени покупателя
 
 
 class Game(models.Model):
@@ -23,10 +29,17 @@ class Game(models.Model):
     description = models.TextField()  # Описание
     age_limited = models.BooleanField(default=False)  # Ограничение возраста
     buyers = models.ManyToManyField(Buyer, related_name='games')  # Покупатели
+
     #  models.ManyToManyField(Buyer, related_name='games') — это поле,
     #  которое устанавливает связь "многие ко многим" между моделями.
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Игра'  # Название в единственном числе
+        verbose_name_plural = 'Игры'  # Название во множественном числе
+        ordering = ['title']  # Сортировка по названию игры
+        unique_together = ('title',)  # Уникальность названия игры
 
 #  python manage.py makemigrations task1 - создаем миграцию
 #  python manage.py migrate -  применяем миграцию
